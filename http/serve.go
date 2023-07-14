@@ -1,10 +1,12 @@
 package http
 
 import (
-	"code.smartsheep.studio/atom/matrix/http/controllers"
-	ctx "code.smartsheep.studio/atom/neutron/http/context"
 	"context"
 	"fmt"
+	"time"
+
+	"code.smartsheep.studio/atom/matrix/http/controllers"
+	ctx "code.smartsheep.studio/atom/neutron/http/context"
 	"github.com/gofiber/fiber/v2"
 
 	"code.smartsheep.studio/atom/matrix/http/middleware"
@@ -12,7 +14,9 @@ import (
 	"code.smartsheep.studio/atom/neutron/toolbox"
 	"github.com/rs/zerolog/log"
 
+	"github.com/gofiber/fiber/v2/middleware/cache"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
+	"github.com/gofiber/fiber/v2/middleware/idempotency"
 	flog "github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/spf13/viper"
 	"go.uber.org/fx"
@@ -26,7 +30,7 @@ func NewHttpServer(cycle fx.Lifecycle, cors middleware.CorsHandler, conf *viper.
 
 	// Create app
 	server = &ctx.App{
-		fiber.New(fiber.Config{
+		App: fiber.New(fiber.Config{
 			Prefork:               viper.GetBool("http.advanced.prefork"),
 			CaseSensitive:         false,
 			StrictRouting:         false,
@@ -38,6 +42,7 @@ func NewHttpServer(cycle fx.Lifecycle, cors middleware.CorsHandler, conf *viper.
 	}
 
 	// Apply global middleware
+	server.Use(idempotency.New())
 	server.Use(flog.New(flog.Config{
 		Format: "${status} | ${latency} | ${method} ${path} ${body}\n",
 		Output: log.Logger,
@@ -74,7 +79,10 @@ func MapControllers(controllers []controllers.HttpController, server *ctx.App) {
 	})
 
 	// Serve static files
-	server.Use("/", filesystem.New(filesystem.Config{
+	server.Use("/", cache.New(cache.Config{
+		Expiration:   24 * time.Hour,
+		CacheControl: true,
+	}), filesystem.New(filesystem.Config{
 		Root:         renderer.GetHttpFS(),
 		Index:        "index.html",
 		NotFoundFile: "index.html",
