@@ -12,4 +12,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
+  rules: {
+    "rules/multi-word-component-names": "off"
+  }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="pt-12 pb-4 px-10">
-      <div class="text-2xl font-bold">Good {{ greetings.period }}, {{ $principal.account?.nickname }}.</div>
+      <div class="text-2xl font-bold">{{ greetings.period }}, {{ $principal.account?.nickname }}.</div>
       <div class="text-lg">{{ greetings.text }}</div>
     </div>
 
@@ -27,9 +27,9 @@ const $principal = usePrincipal()
 
 const greetings = computed(() =>
   new Date().getHours() < 12
-    ? { period: "Morning", text: "Grab a cup of hot coffee and start your day full of energy!" }
+    ? { period: "Good Morning", text: "Grab a cup of hot coffee and start your day full of energy!" }
     : new Date().getHours() <= 18 && new Date().getHours() >= 12
-    ? { period: "Afternoon", text: "It's past three o'clock, what are you doing, the boss won't appreciate you~" }
-    : { period: "Night", text: "It's time to sleep~ Otherwise the http will explode~" }
+    ? { period: "Good Afternoon", text: "It's past three o'clock, what are you doing, the boss won't appreciate you~" }
+    : { period: "Good Night", text: "It's time to sleep~ Otherwise the http will explode~" }
 )
 </script>

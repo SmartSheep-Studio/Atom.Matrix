@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: "/console/:app",
       name: "console.apps",
-      component: () => import("@/views/console/app-details.vue"),
+      component: () => import("@/views/console/app.vue"),
     },
     {
       path: "/console/:app/posts/create",
