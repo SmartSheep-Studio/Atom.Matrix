@@ -12,6 +12,7 @@ steps:
       username: Drone
       password: Drone@2007
       auto_tag: true
+      force_tag: true
     when:
       ref:
       - refs/heads/master
