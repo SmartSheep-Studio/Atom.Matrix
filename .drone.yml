@@ -13,5 +13,8 @@ steps:
       password: Drone@2007
       auto_tag: true
     when:
-      event: push
+      event: 
+      - push
+      - pull_request
+      - tag
       branch: master
