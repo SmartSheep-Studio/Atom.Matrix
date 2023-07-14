@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment="">
+    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment="Patch Native">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/create-app.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/create-post.vue" afterDir="false" />
@@ -65,12 +65,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689344706896</updated>
-      <workItem from="1689344708390" duration="1326000" />
+      <workItem from="1689344708390" duration="1986000" />
     </task>
+    <task id="LOCAL-00001" summary="Patch Native">
+      <created>1689346084330</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689346084330</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Patch Native" />
+    <option name="LAST_COMMIT_MESSAGE" value="Patch Native" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
