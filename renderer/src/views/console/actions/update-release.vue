@@ -9,7 +9,7 @@
       <n-form ref="form" :rules="rules" :model="payload" @submit.prevent="update" class="max-w-[800px]">
         <n-form-item label="Slug" path="slug">
           <n-input
-            placeholder="Use for the link to your release. Only accepts url safe characters."
+            placeholder="Used for this Release's link. Can only contain URL-safe characters."
             v-model:value="payload.slug"
           />
         </n-form-item>
@@ -17,7 +17,7 @@
           <n-select :options="types" v-model:value="payload.type" />
         </n-form-item>
         <n-form-item label="Name" path="name">
-          <n-input placeholder="Use for pointing out topics. Accepts anything you want." v-model:value="payload.name" />
+          <n-input placeholder="The name of this Release. Accepts anything you want." v-model:value="payload.name" />
         </n-form-item>
         <n-form-item label="Tags" path="tags">
           <n-dynamic-tags v-model:value="payload.tags" />
@@ -25,7 +25,7 @@
         <n-form-item label="Description" path="description">
           <n-input
             type="textarea"
-            placeholder="Use for describe your release main content. Accepts anything you want."
+            placeholder="A brief description of this Release. Accepts anything you want."
             v-model:value="payload.description"
           />
         </n-form-item>
@@ -108,25 +108,25 @@ const rules: FormRules = {
   slug: {
     required: true,
     validator: (_, v) => new RegExp(/^[A-Za-z0-9-_]+$/).test(v),
-    message: "Only accepts letters, underscore and numbers without space",
+    message: "Only accepts letters, underscores, and numbers",
     trigger: ["blur", "input"],
   },
   name: {
     required: true,
     validator: (_, v) => v.length >= 4,
-    message: "Need least four characters",
+    message: "Requires at least four characters",
     trigger: ["blur", "input"],
   },
   description: {
     required: true,
     validator: (_, v) => v.length >= 6,
-    message: "Need least six characters",
+    message: "Requires at least six characters",
     trigger: ["blur", "input"],
   },
   details: {
     required: true,
     validator: (_, v) => v.length >= 6,
-    message: "Need least six characters",
+    message: "Requires at least six characters",
     trigger: ["blur", "input"],
   },
 }

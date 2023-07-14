@@ -9,7 +9,7 @@
       <n-form ref="form" :rules="rules" :model="payload" @submit.prevent="update" class="max-w-[800px]">
         <n-form-item label="Slug" path="slug">
           <n-input
-            placeholder="Use for the link to your post. Only accepts url safe characters."
+            placeholder="Used for this post's link. Can only contain URL-safe characters."
             v-model:value="payload.slug"
           />
         </n-form-item>
@@ -18,7 +18,7 @@
         </n-form-item>
         <n-form-item label="Title" path="title">
           <n-input
-            placeholder="Use for pointing out topics. Accepts anything you want."
+            placeholder="The main topic or title of this post. Accepts anything you want."
             v-model:value="payload.title"
           />
         </n-form-item>
@@ -59,19 +59,19 @@ const rules: FormRules = {
   slug: {
     required: true,
     validator: (_, v) => new RegExp(/^[A-Za-z0-9-_]+$/).test(v),
-    message: "Only accepts letters, underscore and numbers without space",
+    message: "Only accepts letters, underscores, and numbers",
     trigger: ["blur", "input"],
   },
   title: {
     required: true,
     validator: (_, v) => v.length >= 4,
-    message: "Need least four characters",
+    message: "Requires at least four characters",
     trigger: ["blur", "input"],
   },
   content: {
     required: true,
     validator: (_, v) => v.length >= 6,
-    message: "Need least six characters",
+    message: "Requires at least six characters",
     trigger: ["blur", "input"],
   },
 }

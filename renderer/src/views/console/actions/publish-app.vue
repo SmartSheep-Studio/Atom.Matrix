@@ -41,9 +41,9 @@ const keyicon = computed(() => (props.data.is_published ? CloudDownloadRound : C
 function publish() {
   $dialog.warning({
     title: "Warning",
-    content: `Are you sure you wanna ${keyword.value.toLowerCase()} this application?`,
-    positiveText: "Yes",
-    negativeText: "Not really",
+    content: `Are you sure you want to ${keyword.value.toLowerCase()} this Application?`,
+    positiveText: "Yes, I am sure",
+    negativeText: "No, not really",
     onPositiveClick: async () => {
       const data = JSON.parse(JSON.stringify(props.data))
       data.is_published = !data.is_published
@@ -54,7 +54,7 @@ function publish() {
         await http.put(`/api/apps/${props.data.slug}`, data)
 
         emits("refresh")
-        $message.success(`Successfully ${keyword.value.toLowerCase()} this app.`)
+        $message.success(`Successfully ${keyword.value.toLowerCase()} this App.`)
       } catch (e: any) {
         $message.error(`Something went wrong... ${e}`)
       } finally {

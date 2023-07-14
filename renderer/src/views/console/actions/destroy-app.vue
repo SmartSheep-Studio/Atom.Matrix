@@ -2,7 +2,7 @@
   <n-card embedded>
     <div class="text-lg">Destroy App</div>
     <div class="mt-1">
-      This operation will destroy all resources belong this application. And cannot be undo. Think twice.
+      This operation will destroy all resources that belongs to this application and cannot be undone. Think twice before you press the button.
     </div>
 
     <div class="mt-3">
@@ -33,9 +33,9 @@ const submitting = ref(false)
 function destroy() {
   $dialog.warning({
     title: "Warning",
-    content: "This operation cannot be undo. Are you confirm?",
-    positiveText: "Yes",
-    negativeText: "Not really",
+    content: "This operation cannot be undone. Are you sure you want to continue?",
+    positiveText: "Yes, I am sure",
+    negativeText: "No, not really",
     onPositiveClick: async () => {
       try {
         submitting.value = true
@@ -43,7 +43,7 @@ function destroy() {
         await http.delete(`/api/apps/${props.data.slug}`)
 
         emits("done")
-        $message.success("Successfully deleted the app. Auto redirecting...")
+        $message.success("Successfully destroyed the App. Redirecting...")
       } catch (e: any) {
         $message.error(`Something went wrong... ${e}`)
       } finally {
