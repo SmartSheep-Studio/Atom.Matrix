@@ -5,7 +5,7 @@ endpoints = "http://localhost:9443"
 mount_key = "WGqNUFNhED"
 
 [paths]
-user_contents = "dist/uploads"
+user_contents = "uploads"
 
 [security]
 sessions_alive_duration = "720h"
