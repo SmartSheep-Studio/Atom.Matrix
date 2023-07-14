@@ -2,7 +2,7 @@ kind: pipeline
 type: docker
 name: default
 steps:
-  - name: Build Image
+  - name: build image
     image: plugins/docker
     environment:
       DOCKER_BUILDKIT: 1
@@ -13,6 +13,9 @@ steps:
       password: Drone@2007
       auto_tag: true
     when:
+      ref:
+      - refs/heads/master
+      - refs/tags/*
       event: 
       - push
       - pull_request
