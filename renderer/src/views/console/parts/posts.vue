@@ -2,7 +2,7 @@
   <div>
     <n-spin :show="requesting">
       <n-list bordered>
-        <n-empty v-if="data.length <= 0" class="py-8" description="There's no data. Why not you create one?" />
+        <n-empty v-if="data.length <= 0" class="py-8" description="There's no data here. Why don't you create one?" />
 
         <n-list-item v-for="item in data">
           <n-thing :title="item.title">

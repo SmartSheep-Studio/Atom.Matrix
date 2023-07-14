@@ -1,26 +1,26 @@
 <template>
   <div class="container">
     <div class="pt-12 pb-4 px-10">
-      <div class="text-2xl font-bold">Create a new app</div>
-      <div class="text-lg">Don't forgot follow the community guidelines!</div>
+      <div class="text-2xl font-bold">Create a new App</div>
+      <div class="text-lg">Don't forget follow the community guidelines!</div>
     </div>
 
     <div class="px-10 pt-4">
       <n-form ref="form" :rules="rules" :model="payload" @submit.prevent="create" class="max-w-[800px]">
         <n-form-item label="Slug" path="slug">
           <n-input
-            placeholder="Use for the link to your application. Only accepts url safe characters."
+            placeholder="Used for this Application-Page's link. Can only contain URL-safe characters."
             v-model:value="payload.slug"
           />
         </n-form-item>
         <n-form-item label="URL" path="url">
           <n-input
-            placeholder="The homepage of this application. Can be your studio homepage or source repository. Or you can keep this field blank"
+            placeholder="The homepage of this Application. Can be your studio homepage or source repository, or you can keep this field blank."
             v-model:value="payload.url"
           />
         </n-form-item>
         <n-form-item label="Name" path="name">
-          <n-input placeholder="Use for pointing out topics. Accepts anything you want." v-model:value="payload.name" />
+          <n-input placeholder="The name of this Application. Accepts anything you want." v-model:value="payload.name" />
         </n-form-item>
         <n-form-item label="Tags" path="tags">
           <n-dynamic-tags v-model:value="payload.tags" />
@@ -28,7 +28,7 @@
         <n-form-item label="Description" path="description">
           <n-input
             type="textarea"
-            placeholder="Use for describe main content. Accepts anything you want."
+            placeholder="A brief description of this Application. Accepts anything you want."
             v-model:value="payload.description"
           />
         </n-form-item>
@@ -64,25 +64,25 @@ const rules: FormRules = {
   slug: {
     required: true,
     validator: (_, v) => new RegExp(/^[A-Za-z0-9-_]+$/).test(v),
-    message: "Only accepts letters, underscore and numbers without space",
+    message: "Only accepts letters, underscores, and numbers",
     trigger: ["blur", "input"],
   },
   name: {
     required: true,
     validator: (_, v) => v.length >= 4,
-    message: "Need least four characters",
+    message: "Requires at least four characters",
     trigger: ["blur", "input"],
   },
   description: {
     required: true,
     validator: (_, v) => v.length >= 6,
-    message: "Need least six characters",
+    message: "Requires at least six characters",
     trigger: ["blur", "input"],
   },
   details: {
     required: true,
     validator: (_, v) => v.length >= 6,
-    message: "Need least six characters",
+    message: "Requires at least six characters",
     trigger: ["blur", "input"],
   },
 }
@@ -109,10 +109,10 @@ function create() {
       await http.post("/api/apps", payload)
 
       $dialog.success({
-        title: "Successfully created an app",
+        title: "Successfully created an App",
         content:
-          "Currently your app isn't publish yet, you can publish the app on the console page when you think you're ready.",
-        positiveText: "OK",
+          "Currently your application isn't published yet, but you can publish it later on the console page when you're ready.",
+        positiveText: "Okay",
         onPositiveClick: async () => {
           await $router.push(await parseRedirect($route.query))
         },

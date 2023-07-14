@@ -6,7 +6,7 @@
       </div>
       <div class="mt-1 pl-4">
         <div class="text-4xl font-bold">Matrix</div>
-        <div class="text-lg">Committed to improving the application download and run experience.</div>
+        <div class="text-lg">Committed towards improving the application download and run experience.</div>
       </div>
     </div>
 
