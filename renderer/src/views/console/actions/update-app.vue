@@ -99,7 +99,7 @@ function update() {
     try {
       submitting.value = true
 
-      await http.put(`/api/apps/${payload.value.slug}`, payload.value)
+      await http.put(`/api/apps/${props.data.slug}`, payload.value)
 
       emits("refresh")
       $message.success("Successfully updated the app")
