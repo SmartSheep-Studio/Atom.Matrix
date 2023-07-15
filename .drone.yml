@@ -13,3 +13,8 @@ steps:
       password:
         from_secret: CD.Agent
       auto_tag: true
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/**
+  - refs/pull/*/head
