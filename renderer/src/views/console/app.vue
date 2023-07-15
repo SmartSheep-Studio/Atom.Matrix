@@ -12,7 +12,7 @@
         </n-page-header>
       </div>
 
-      <div class="lg:px-10">
+      <div class="px-2 md:px-4 lg:px-10">
         <n-tabs type="line" justify-content="space-around" animated>
           <n-tab-pane name="resources" tab="Resources" display-directive="show:lazy">
             <n-grid v-if="!reverting" item-responsive responsive="screen" :x-gap="8" :y-gap="8" class="mt-2">
@@ -28,8 +28,8 @@
               </n-gi>
             </n-grid>
           </n-tab-pane>
-          <n-tab-pane name="settings" tab="Settings" display-directive="show:lazy" class="mt-2">
-            <n-grid v-if="!reverting" item-responsive responsive="screen" :x-gap="8" :y-gap="8">
+          <n-tab-pane name="settings" tab="Settings" display-directive="show:lazy">
+            <n-grid v-if="!reverting" item-responsive responsive="screen" :x-gap="8" :y-gap="8" class="mt-2">
               <n-gi span="24 m:14 l:16">
                 <n-card title="Update App">
                   <update-app :data="app" @refresh="fetch()" />

@@ -66,7 +66,6 @@
 </template>
 
 <script lang="ts" setup>
-import { usePrincipal } from "@/stores/principal"
 import { computed, onMounted, reactive, ref } from "vue"
 import { PlusRound, EditRound, DeleteRound } from "@vicons/material"
 import { http } from "@/utils/http"
@@ -74,14 +73,13 @@ import { useDialog, useMessage } from "naive-ui"
 
 const $dialog = useDialog()
 const $message = useMessage()
-const $principal = usePrincipal()
 
 const props = defineProps<{ data: any }>()
 
 const rawData = ref<any[]>([])
 const data = computed(() => {
   const start = (pagination.page - 1) * pagination.pageSize
-  return rawData.value?.reverse().slice(start, start + pagination.pageSize) ?? []
+  return rawData.value.slice(start, start + pagination.pageSize) ?? []
 })
 
 const requesting = ref(true)
