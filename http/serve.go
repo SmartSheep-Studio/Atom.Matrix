@@ -35,6 +35,8 @@ func NewHttpServer(cycle fx.Lifecycle, cors middleware.CorsHandler, conf *viper.
 			CaseSensitive:         false,
 			StrictRouting:         false,
 			DisableStartupMessage: true,
+			EnableIPValidation:    true,
+			ProxyHeader:           "X-Forwarded-For",
 			ServerHeader:          "Matrix",
 			AppName:               "Matrix v2.0",
 			BodyLimit:             viper.GetInt("http.max_body_size"),
