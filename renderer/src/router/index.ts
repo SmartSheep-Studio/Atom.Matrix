@@ -26,27 +26,27 @@ const router = createRouter({
       component: () => import("@/views/console/landing.vue"),
     },
     {
-      path: "/console/-/:app",
+      path: "/console/apps/-/:app",
       name: "console.apps",
       component: () => import("@/views/console/app.vue"),
     },
     {
-      path: "/console/-/:app/posts/create",
+      path: "/console/apps/-/:app/posts/create",
       name: "console.apps.posts.create",
       component: () => import("@/views/console/actions/create-post.vue"),
     },
     {
-      path: "/console/-/:app/posts/:post/update",
+      path: "/console/apps/-/:app/posts/:post/update",
       name: "console.apps.posts.update",
       component: () => import("@/views/console/actions/update-post.vue"),
     },
     {
-      path: "/console/-/:app/releases/create",
+      path: "/console/apps/-/:app/releases/create",
       name: "console.apps.releases.create",
       component: () => import("@/views/console/actions/create-release.vue"),
     },
     {
-      path: "/console/-/:app/releases/:release/update",
+      path: "/console/apps/-/:app/releases/:release/update",
       name: "console.apps.releases.update",
       component: () => import("@/views/console/actions/update-release.vue"),
     },
