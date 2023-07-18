@@ -46,7 +46,7 @@ func NewHttpServer(cycle fx.Lifecycle, cors middleware.CorsHandler, conf *viper.
 	// Apply global middleware
 	server.Use(idempotency.New())
 	server.Use(flog.New(flog.Config{
-		Format: "${status} | ${latency} | ${method} ${path} ${body}\n",
+		Format: "${status} | ${latency} | ${method} ${path}\n",
 		Output: log.Logger,
 	}))
 	server.Use(cors())
