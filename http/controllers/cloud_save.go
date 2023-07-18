@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"code.smartsheep.studio/atom/neutron/http/context"
 	"encoding/json"
 	"errors"
 	"fmt"
+
+	"code.smartsheep.studio/atom/neutron/http/context"
 	"github.com/gofiber/fiber/v2"
 
 	"code.smartsheep.studio/atom/matrix/datasource/models"
@@ -23,9 +24,9 @@ func NewCloudSaveController(db *gorm.DB, auth middleware.AuthHandler) *CloudSave
 }
 
 func (ctrl *CloudSaveController) Map(router *context.App) {
-	router.Get("/api/apps/:app/cloud-save", ctrl.auth(true), ctrl.get)
-	router.Put("/api/apps/:app/cloud-save", ctrl.auth(true), ctrl.update)
-	router.Put("/api/apps/:app/cloud-save/name", ctrl.auth(true), ctrl.updateInfo)
+	router.Get("/api/apps/:app/cloud-save", ctrl.auth(true, "matrix.cloud-save.read"), ctrl.get)
+	router.Put("/api/apps/:app/cloud-save", ctrl.auth(true, "matrix.cloud-save.update"), ctrl.update)
+	router.Put("/api/apps/:app/cloud-save/name", ctrl.auth(true, "matrix.cloud-save.update.name"), ctrl.updateInfo)
 }
 
 func (ctrl *CloudSaveController) get(ctx *fiber.Ctx) error {

@@ -19,11 +19,11 @@ func NewPostController(db *gorm.DB, auth middleware.AuthHandler) *PostController
 }
 
 func (ctrl *PostController) Map(router *context.App) {
-	router.Get("/api/apps/:app/posts", ctrl.auth(true), ctrl.list)
-	router.Get("/api/apps/:app/posts/:post", ctrl.auth(true), ctrl.get)
-	router.Post("/api/apps/:app/posts", ctrl.auth(true), ctrl.create)
-	router.Put("/api/apps/:app/posts/:post", ctrl.auth(true), ctrl.update)
-	router.Delete("/api/apps/:app/posts/:post", ctrl.auth(true), ctrl.delete)
+	router.Get("/api/apps/:app/posts", ctrl.auth(true, "matrix.apps.posts.read", "matrix.apps.posts.read"), ctrl.list)
+	router.Get("/api/apps/:app/posts/:post", ctrl.auth(true, "matrix.apps.posts.read", "matrix.apps.posts.read"), ctrl.get)
+	router.Post("/api/apps/:app/posts", ctrl.auth(true, "matrix.apps.posts.create", "matrix.apps.posts.create"), ctrl.create)
+	router.Put("/api/apps/:app/posts/:post", ctrl.auth(true, "matrix.apps.posts.update", "matrix.apps.posts.update"), ctrl.update)
+	router.Delete("/api/apps/:app/posts/:post", ctrl.auth(true, "matrix.apps.posts.delete", "matrix.apps.posts.delete"), ctrl.delete)
 }
 
 func (ctrl *PostController) list(ctx *fiber.Ctx) error {

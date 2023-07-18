@@ -19,11 +19,11 @@ func NewReleaseController(db *gorm.DB, auth middleware.AuthHandler) *ReleaseCont
 }
 
 func (ctrl *ReleaseController) Map(router *context.App) {
-	router.Get("/api/apps/:app/releases", ctrl.auth(true), ctrl.list)
-	router.Get("/api/apps/:app/releases/:release", ctrl.auth(true), ctrl.get)
-	router.Post("/api/apps/:app/releases", ctrl.auth(true), ctrl.create)
-	router.Put("/api/apps/:app/releases/:release", ctrl.auth(true), ctrl.update)
-	router.Delete("/api/apps/:app/releases/:release", ctrl.auth(true), ctrl.delete)
+	router.Get("/api/apps/:app/releases", ctrl.auth(true, "matrix.apps.releases.read", "matrix.apps.releases.read"), ctrl.list)
+	router.Get("/api/apps/:app/releases/:release", ctrl.auth(true, "matrix.apps.releases.read", "matrix.apps.releases.read"), ctrl.get)
+	router.Post("/api/apps/:app/releases", ctrl.auth(true, "matrix.apps.releases.create", "matrix.apps.releases.create"), ctrl.create)
+	router.Put("/api/apps/:app/releases/:release", ctrl.auth(true, "matrix.apps.releases.update", "matrix.apps.releases.update"), ctrl.update)
+	router.Delete("/api/apps/:app/releases/:release", ctrl.auth(true, "matrix.apps.releases.delete", "matrix.apps.releases.delete"), ctrl.delete)
 }
 
 func (ctrl *ReleaseController) list(ctx *fiber.Ctx) error {

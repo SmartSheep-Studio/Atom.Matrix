@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"code.smartsheep.studio/atom/neutron/http/context"
 	"errors"
+
+	"code.smartsheep.studio/atom/neutron/http/context"
 	"github.com/gofiber/fiber/v2"
 
 	"code.smartsheep.studio/atom/matrix/datasource/models"
@@ -23,9 +24,9 @@ func NewLibraryController(db *gorm.DB, conn *toolbox.ExternalServiceConnection, 
 }
 
 func (ctrl *LibraryController) Map(router *context.App) {
-	router.Get("/api/library", ctrl.auth(true), ctrl.list)
-	router.Get("/api/library/own", ctrl.auth(true), ctrl.doesOwn)
-	router.Post("/api/library/add", ctrl.auth(true), ctrl.add)
+	router.Get("/api/library", ctrl.auth(true, "matrix.library.read"), ctrl.list)
+	router.Get("/api/library/own", ctrl.auth(true, "matrix.library.read"), ctrl.doesOwn)
+	router.Post("/api/library/add", ctrl.auth(true, "matrix.library.add"), ctrl.add)
 }
 
 func (ctrl *LibraryController) list(ctx *fiber.Ctx) error {
