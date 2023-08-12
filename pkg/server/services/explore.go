@@ -1,7 +1,7 @@
 package services
 
 import (
-	"code.smartsheep.studio/atom/matrix/datasource/models"
+	models "code.smartsheep.studio/atom/matrix/pkg/server/datasource/models"
 	"gorm.io/gorm"
 )
 

@@ -1,4 +1,4 @@
-package renderer
+package matrix_web
 
 import (
 	"embed"

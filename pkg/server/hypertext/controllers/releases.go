@@ -1,72 +1,92 @@
 package controllers
 
 import (
-	"code.smartsheep.studio/atom/matrix/datasource/models"
-	"code.smartsheep.studio/atom/matrix/http/middleware"
-	"code.smartsheep.studio/atom/neutron/http/context"
+	"code.smartsheep.studio/atom/matrix/pkg/server/datasource/models"
+	"code.smartsheep.studio/atom/matrix/pkg/server/hypertext/hyperutils"
+	"code.smartsheep.studio/atom/matrix/pkg/server/hypertext/middleware"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
 type ReleaseController struct {
-	db   *gorm.DB
-	auth middleware.AuthHandler
+	db         *gorm.DB
+	gatekeeper *middleware.AuthMiddleware
 }
 
-func NewReleaseController(db *gorm.DB, auth middleware.AuthHandler) *ReleaseController {
-	return &ReleaseController{db, auth}
+func NewReleaseController(db *gorm.DB, gatekeeper *middleware.AuthMiddleware) *ReleaseController {
+	return &ReleaseController{db, gatekeeper}
 }
 
-func (ctrl *ReleaseController) Map(router *context.App) {
-	router.Get("/api/apps/:app/releases", ctrl.auth(true, "matrix.apps.releases.read", "matrix.apps.releases.read"), ctrl.list)
-	router.Get("/api/apps/:app/releases/:release", ctrl.auth(true, "matrix.apps.releases.read", "matrix.apps.releases.read"), ctrl.get)
-	router.Post("/api/apps/:app/releases", ctrl.auth(true, "matrix.apps.releases.create", "matrix.apps.releases.create"), ctrl.create)
-	router.Put("/api/apps/:app/releases/:release", ctrl.auth(true, "matrix.apps.releases.update", "matrix.apps.releases.update"), ctrl.update)
-	router.Delete("/api/apps/:app/releases/:release", ctrl.auth(true, "matrix.apps.releases.delete", "matrix.apps.releases.delete"), ctrl.delete)
+func (ctrl *ReleaseController) Map(router *fiber.App) {
+	router.Get(
+		"/api/apps/:app/releases",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("read:apps.releases"), hyperutils.GenPerms("apps.releases.read")),
+		ctrl.list,
+	)
+	router.Get(
+		"/api/apps/:app/releases/:release",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("read:apps.releases"), hyperutils.GenPerms("apps.releases.read")),
+		ctrl.get,
+	)
+	router.Post(
+		"/api/apps/:app/releases",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("create:apps.releases"), hyperutils.GenPerms("apps.releases.create")),
+		ctrl.create,
+	)
+	router.Put(
+		"/api/apps/:app/releases/:release",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("update:apps.releases"), hyperutils.GenPerms("apps.releases.update")),
+		ctrl.update,
+	)
+	router.Delete(
+		"/api/apps/:app/releases/:release",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("delete:apps.releases"), hyperutils.GenPerms("apps.releases.delete")),
+		ctrl.delete,
+	)
 }
 
-func (ctrl *ReleaseController) list(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *ReleaseController) list(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ? AND account_id = ?", c.Params("app"), u.ID).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var releases []models.Release
 	if err := ctrl.db.Where("app_id = ?", app.ID).Order("created_at desc").Preload("Post").Find(&releases).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.JSON(releases)
 	}
 }
 
-func (ctrl *ReleaseController) get(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *ReleaseController) get(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ? AND account_id = ?", c.Params("app"), u.ID).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var release models.Release
 	if err := ctrl.db.Where("slug = ? AND app_id = ?", c.Params("release"), app.ID).Preload("Post").First(&release).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.JSON(release)
 	}
 }
 
-func (ctrl *ReleaseController) create(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *ReleaseController) create(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ? AND account_id = ?", c.Params("app"), u.ID).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var req struct {
@@ -80,7 +100,7 @@ func (ctrl *ReleaseController) create(ctx *fiber.Ctx) error {
 		IsPublished bool                  `json:"is_published"`
 	}
 
-	if err := c.BindBody(&req); err != nil {
+	if err := hyperutils.BodyParser(c, &req); err != nil {
 		return err
 	}
 
@@ -103,19 +123,19 @@ func (ctrl *ReleaseController) create(ctx *fiber.Ctx) error {
 	}
 
 	if err := ctrl.db.Save(&release).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.JSON(release)
 	}
 }
 
-func (ctrl *ReleaseController) update(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *ReleaseController) update(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ? AND account_id = ?", c.Params("app"), u.ID).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var req struct {
@@ -129,7 +149,7 @@ func (ctrl *ReleaseController) update(ctx *fiber.Ctx) error {
 		IsPublished bool                  `json:"is_published"`
 	}
 
-	if err := c.BindBody(&req); err != nil {
+	if err := hyperutils.BodyParser(c, &req); err != nil {
 		return err
 	}
 
@@ -138,7 +158,7 @@ func (ctrl *ReleaseController) update(ctx *fiber.Ctx) error {
 	var release models.Release
 	if err := tx.Where("slug = ? AND app_id = ?", c.Params("release"), app.ID).Preload("Post").First(&release).Error; err != nil {
 		tx.Rollback()
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		ctrl.db.Unscoped().Delete(&release.Post)
 	}
@@ -160,36 +180,36 @@ func (ctrl *ReleaseController) update(ctx *fiber.Ctx) error {
 
 	if err := tx.Save(&release).Error; err != nil {
 		tx.Rollback()
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	if err := tx.Commit().Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.JSON(release)
 	}
 }
 
-func (ctrl *ReleaseController) delete(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *ReleaseController) delete(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ? AND account_id = ?", c.Params("app"), u.ID).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var release models.Release
 	if err := ctrl.db.Where("slug = ? AND app_id = ?", c.Params("release"), app.ID).Preload("Post").First(&release).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	if err := ctrl.db.Delete(&release.Post).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	if err := ctrl.db.Delete(&release).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.SendStatus(fiber.StatusNoContent)
 	}

@@ -1,41 +1,53 @@
 package controllers
 
 import (
+	"code.smartsheep.studio/atom/matrix/pkg/server/datasource/models"
+	"code.smartsheep.studio/atom/matrix/pkg/server/hypertext/hyperutils"
+	"code.smartsheep.studio/atom/matrix/pkg/server/hypertext/middleware"
 	"encoding/json"
 	"errors"
 	"fmt"
 
-	"code.smartsheep.studio/atom/neutron/http/context"
 	"github.com/gofiber/fiber/v2"
 
-	"code.smartsheep.studio/atom/matrix/datasource/models"
-	"code.smartsheep.studio/atom/matrix/http/middleware"
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
 type CloudSaveController struct {
-	db   *gorm.DB
-	auth middleware.AuthHandler
+	db         *gorm.DB
+	gatekeeper *middleware.AuthMiddleware
 }
 
-func NewCloudSaveController(db *gorm.DB, auth middleware.AuthHandler) *CloudSaveController {
-	return &CloudSaveController{db, auth}
+func NewCloudSaveController(db *gorm.DB, gatekeeper *middleware.AuthMiddleware) *CloudSaveController {
+	return &CloudSaveController{db, gatekeeper}
 }
 
-func (ctrl *CloudSaveController) Map(router *context.App) {
-	router.Get("/api/apps/:app/cloud-save", ctrl.auth(true, "matrix.cloud-save.read"), ctrl.get)
-	router.Put("/api/apps/:app/cloud-save", ctrl.auth(true, "matrix.cloud-save.update"), ctrl.update)
-	router.Put("/api/apps/:app/cloud-save/name", ctrl.auth(true, "matrix.cloud-save.update.name"), ctrl.updateInfo)
+func (ctrl *CloudSaveController) Map(router *fiber.App) {
+	router.Get(
+		"/api/apps/:app/cloud-save",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("read:cloud-save"), hyperutils.GenPerms()),
+		ctrl.get,
+	)
+	router.Put(
+		"/api/apps/:app/cloud-save",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("update:cloud-save"), hyperutils.GenPerms()),
+		ctrl.update,
+	)
+	router.Put(
+		"/api/apps/:app/cloud-save/name",
+		ctrl.gatekeeper.Fn(true, hyperutils.GenScope("update:cloud-save.meta"), hyperutils.GenPerms()),
+		ctrl.updateMeta,
+	)
 }
 
-func (ctrl *CloudSaveController) get(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *CloudSaveController) get(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ?", c.Params("app")).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var library models.LibraryItem
@@ -43,19 +55,19 @@ func (ctrl *CloudSaveController) get(ctx *fiber.Ctx) error {
 		if errors.Is(gorm.ErrRecordNotFound, err) {
 			return fiber.NewError(fiber.StatusForbidden, "you haven't that app")
 		} else {
-			return c.DbError(err)
+			return hyperutils.ErrorParser(err)
 		}
 	}
 
 	return c.JSON(library.CloudSave)
 }
 
-func (ctrl *CloudSaveController) update(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *CloudSaveController) update(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var req map[string]any
-	if err := c.BindBody(&req); err != nil {
+	if err := hyperutils.BodyParser(c, &req); err != nil {
 		return err
 	}
 
@@ -66,7 +78,7 @@ func (ctrl *CloudSaveController) update(ctx *fiber.Ctx) error {
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ?", c.Params("app")).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var library models.LibraryItem
@@ -74,34 +86,34 @@ func (ctrl *CloudSaveController) update(ctx *fiber.Ctx) error {
 		if errors.Is(gorm.ErrRecordNotFound, err) {
 			return fiber.NewError(fiber.StatusForbidden, "you haven't that app")
 		} else {
-			return c.DbError(err)
+			return hyperutils.ErrorParser(err)
 		}
 	}
 
 	library.CloudSave.Payload = datatypes.JSON(data)
 
 	if err := ctrl.db.Save(&library.CloudSave).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.JSON(library.CloudSave)
 	}
 }
 
-func (ctrl *CloudSaveController) updateInfo(ctx *fiber.Ctx) error {
-	c := &context.Ctx{Ctx: ctx}
+func (ctrl *CloudSaveController) updateMeta(c *fiber.Ctx) error {
+
 	u := c.Locals("matrix-id").(*models.Account)
 
 	var req struct {
 		Name string `json:"name" validate:"required"`
 	}
 
-	if err := c.BindBody(&req); err != nil {
+	if err := hyperutils.BodyParser(c, &req); err != nil {
 		return err
 	}
 
 	var app models.App
 	if err := ctrl.db.Where("slug = ?", c.Params("app")).First(&app).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	}
 
 	var library models.LibraryItem
@@ -109,14 +121,14 @@ func (ctrl *CloudSaveController) updateInfo(ctx *fiber.Ctx) error {
 		if errors.Is(gorm.ErrRecordNotFound, err) {
 			return fiber.NewError(fiber.StatusForbidden, "you haven't that app")
 		} else {
-			return c.DbError(err)
+			return hyperutils.ErrorParser(err)
 		}
 	}
 
 	library.CloudSave.Name = req.Name
 
 	if err := ctrl.db.Save(&library.CloudSave).Error; err != nil {
-		return c.DbError(err)
+		return hyperutils.ErrorParser(err)
 	} else {
 		return c.JSON(library.CloudSave)
 	}

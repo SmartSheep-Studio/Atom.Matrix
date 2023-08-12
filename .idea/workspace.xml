@@ -1,29 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment="Patch Native">
+      <change afterPath="$PROJECT_DIR$/pkg/cmd/server/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/server/hypertext/hyperutils/auth.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/server/hypertext/hyperutils/parser.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/server/hypertext/hyperutils/response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/create-app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/create-post.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-release.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/create-release.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/destroy-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/destroy-app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/publish-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/publish-app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/update-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/update-app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/update-post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/update-post.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/update-release.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/actions/update-release.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/parts/apps.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/parts/apps.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/parts/posts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/parts/posts.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/parts/releases.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/console/parts/releases.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/renderer/src/views/landing.vue" beforeDir="false" afterPath="$PROJECT_DIR$/renderer/src/views/landing.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/loader.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/config/loader.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/config/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/publisher.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/config/publisher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/gorm.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/gorm.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/account.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/account.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/apps.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/apps.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/cloud_save.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/cloud_save.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/migrator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/migrator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/posts.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/posts.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/models/releases.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/releases.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/apps.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/apps.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/cloud_save.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/cloud_save.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/explore.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/explore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/library.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/library.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/posts.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/posts.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/releases.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/releases.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/controllers/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/controllers/status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/middleware/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/middleware/cors.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/middleware/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/middleware/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http/serve.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/log.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/logger/log.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/logger/module.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/.eslintrc.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/.prettierrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/.prettierrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/auto-imports.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/auto-imports.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/embed.go" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/embed.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/postcss.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/postcss.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/public/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/public/favicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/assets/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/assets/placeholders/default-avatar.png" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/assets/placeholders/default-avatar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/assets/placeholders/default-banner.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/assets/placeholders/default-banner.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/assets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/components/global/gatekeeper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/components/global/gatekeeper.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/data-provider.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/data-provider.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/i18n/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/i18n/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/i18n/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/i18n/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/i18n/zh-cn.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/i18n/zh-cn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/stores/endpoint.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/stores/endpoint.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/stores/principal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/stores/principal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/utils/callback.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/callback.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/utils/endpoint.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/endpoint.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/utils/gatekeeper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/gatekeeper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/utils/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/http.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/utils/placeholders.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/placeholders.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/create-app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/create-post.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/create-release.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/create-release.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/destroy-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/destroy-app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/publish-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/publish-app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/update-app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/update-app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/update-post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/update-post.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/actions/update-release.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/actions/update-release.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/landing.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/landing.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/parts/apps.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/parts/apps.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/parts/posts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/parts/posts.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/console/parts/releases.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/console/parts/releases.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/landing.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/landing.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/library/landing.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/library/landing.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/src/views/store/info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/store/info.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/tsconfig.node.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/tsconfig.node.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/explore.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/services/explore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/module.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/services/module.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../../Tools/Scoop/apps/go/current" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -35,6 +117,12 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2STlKGNousxr0HttTeVwec5YJjd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -44,19 +132,56 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "translate-patch-1",
-    "last_opened_file_path": "C:/Users/LittleSheep/Projects/Code/Atom/Matrix",
+    "git-widget-placeholder": "master",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/LittleSheep/Projects/Code/Atom/Bedrock/dist/subapps/matrix",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "C:\\Tools\\Scoop\\apps\\jetbrains-toolbox\\current\\GoLand\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LittleSheep\Projects\Code\Atom\Matrix\pkg\server\hypertext" />
+      <recent name="C:\Users\LittleSheep\Projects\Code\Atom\Matrix\pkg" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LittleSheep\Projects\Code\Atom\Matrix\pkg\server" />
+      <recent name="C:\Users\LittleSheep\Projects\Code\Atom\Matrix\packages" />
+      <recent name="C:\Users\LittleSheep\Projects\Code\Atom\Matrix\pkg" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="go mod sum" />
+      <command value="go mod tidy" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Matrix" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="Matrix" />
+      <working_directory value="$PROJECT_DIR$" />
+      <parameters value="serve" />
+      <kind value="FILE" />
+      <package value="code.smartsheep.studio/atom/matrix/pkg/cmd/server" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/pkg/cmd/server/main.go" />
+      <output_directory value="$PROJECT_DIR$/../Bedrock/dist/subapps/matrix" />
+      <option name="run" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

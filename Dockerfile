@@ -1,32 +1,33 @@
 # Run image with this command
-# docker run --rm --name matrix --net host -v $(pwd)/config.toml:/http/config.toml -v $(pwd)/plugins:/http/plugins -v $(pwd)/resources:/resources matrix
+# docker run --rm --name matrix --net host -v $(pwd)/config.toml:/app/config.toml  -v $(pwd)/resources:/resources matrix
 
 # Building Frontend
-FROM node:18-alpine as renderer
-WORKDIR /workspace
+FROM node:18-alpine as matrix-web
+WORKDIR /source
 COPY . .
-WORKDIR /workspace/renderer
+WORKDIR /source/packages/matrix-web
 RUN rm -rf dist node_modules
-RUN --mount=type=cache,target=/workspace/renderer/node_modules,id=renderer_modules_cache,sharing=locked \
-    --mount=type=cache,target=/root/.npm,id=renderer_node_cache \
+RUN --mount=type=cache,target=/source/packages/matrix-web/node_modules,id=matrix_web_modules_cache,sharing=locked \
+    --mount=type=cache,target=/root/.npm,id=matrix_web_node_cache \
     yarn install
-RUN --mount=type=cache,target=/workspace/renderer/node_modules,id=renderer_modules_cache,sharing=locked \
+RUN --mount=type=cache,target=/source/packages/matrix-web/node_modules,id=matrix_web_modules_cache,sharing=locked \
     yarn run build-only
+RUN mv /source/packages/matrix-web/dist /dist
 
 # Building Backend
-FROM golang:alpine as backend
+FROM golang:alpine as matrix-server
 
-WORKDIR /workspace
+WORKDIR /source
 COPY . .
-COPY --from=renderer /workspace/renderer/dist /workspace/renderer/dist
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
+COPY --from=matrix-web /dist /source/packages/matrix-web/dist
+RUN mkdir /dist
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /dist/server .
 
 # Runtime
 FROM golang:alpine
 
-WORKDIR /server
-COPY --from=backend /workspace/main main
+COPY --from=matrix-server /dist/server /app/server
 
-EXPOSE 9446
+EXPOSE 9443
 
-CMD ["/server/main"]
+CMD ["/app/server"]

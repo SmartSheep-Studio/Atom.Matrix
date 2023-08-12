@@ -1,11 +1,11 @@
 package main
 
 import (
-	"code.smartsheep.studio/atom/matrix/config"
-	"code.smartsheep.studio/atom/matrix/datasource"
-	"code.smartsheep.studio/atom/matrix/http"
-	"code.smartsheep.studio/atom/matrix/logger"
-	"code.smartsheep.studio/atom/matrix/services"
+	"code.smartsheep.studio/atom/matrix/pkg/server/config"
+	"code.smartsheep.studio/atom/matrix/pkg/server/datasource"
+	"code.smartsheep.studio/atom/matrix/pkg/server/hypertext"
+	"code.smartsheep.studio/atom/matrix/pkg/server/logger"
+	"code.smartsheep.studio/atom/matrix/pkg/server/services"
 	"code.smartsheep.studio/atom/neutron/toolbox"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
@@ -20,7 +20,7 @@ func main() {
 		config.Module(),
 		datasource.Module(),
 		services.Module(),
-		http.Module(),
+		hypertext.Module(),
 
 		fx.Invoke(func(conf *viper.Viper, endpoint *toolbox.ExternalServiceConnection) {
 			log.Info().Msgf("Your matrix instance is ready on: %s", conf.GetString("base_url"))

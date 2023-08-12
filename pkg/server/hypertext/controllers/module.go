@@ -1,20 +1,20 @@
 package controllers
 
 import (
-	ctx "code.smartsheep.studio/atom/neutron/http/context"
+	"github.com/gofiber/fiber/v2"
 	"go.uber.org/fx"
 )
 
-type HttpController interface {
-	Map(router *ctx.App)
+type HypertextController interface {
+	Map(router *fiber.App)
 }
 
 func AsController(f any) any {
-	return fx.Annotate(f, fx.As(new(HttpController)), fx.ResultTags(`group:"http"`))
+	return fx.Annotate(f, fx.As(new(HypertextController)), fx.ResultTags(`group:"hypertext_controllers"`))
 }
 
 func Module() fx.Option {
-	return fx.Module("http.controllers",
+	return fx.Module("hypertext.controllers",
 		fx.Provide(
 			AsController(NewStatusController),
 			AsController(NewExploreController),
