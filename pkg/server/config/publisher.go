@@ -2,6 +2,7 @@ package config
 
 import (
 	"code.smartsheep.studio/atom/bedrock/pkg/kit/subapps"
+	"code.smartsheep.studio/atom/bedrock/pkg/server/datasource/models"
 	"fmt"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
@@ -13,10 +14,21 @@ func NewEndpointConnection() *subapps.HeLiCoPtErConnection {
 
 	conn, err := subapps.PublishApp(
 		fmt.Sprintf(
-			"BEDROCK_ENDPOINT_URL=http://127.0.0.1:%s",
+			"http://127.0.0.1:%s",
 			strings.SplitN(viper.GetString("hypertext.bind_addr"), ":", 2)[1],
 		),
 		"matrix",
+		models.SubAppExposedPage{
+			Icon:  "mdi-store",
+			Name:  "matrix",
+			Title: "Matrix",
+			Path:  "/",
+			Meta: map[string]any{
+				"gatekeeper": map[string]any{
+					"must": true,
+				},
+			},
+		},
 	)
 
 	if err != nil {

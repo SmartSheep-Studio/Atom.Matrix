@@ -3,7 +3,7 @@ module code.smartsheep.studio/atom/matrix
 go 1.20
 
 require (
-	code.smartsheep.studio/atom/bedrock v0.0.0-20230811141750-62bf696f3505
+	code.smartsheep.studio/atom/bedrock v0.0.0-20230812152450-5b49d30cff23
 	code.smartsheep.studio/atom/neutron v0.0.0-20230713075104-9c4c72ab83cb
 	github.com/go-playground/validator/v10 v10.14.0
 	github.com/rs/zerolog v1.29.1
