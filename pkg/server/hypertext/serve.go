@@ -1,8 +1,10 @@
 package hypertext
 
 import (
+	"code.smartsheep.studio/atom/bedrock/pkg/kit/subapps"
 	view "code.smartsheep.studio/atom/matrix/packages/matrix-web"
 	"code.smartsheep.studio/atom/matrix/pkg/server/hypertext/controllers"
+	"github.com/gofiber/fiber/v2/middleware/proxy"
 
 	"context"
 	"github.com/gofiber/fiber/v2"
@@ -92,14 +94,14 @@ func NewHttpServer(cycle fx.Lifecycle, conf *viper.Viper) *fiber.App {
 	return server
 }
 
-func MapControllers(controllers []controllers.HypertextController, server *fiber.App) {
+func MapControllers(controllers []controllers.HypertextController, server *fiber.App, conn *subapps.HeLiCoPtErConnection) {
 	for _, controller := range controllers {
 		controller.Map(server)
 	}
 
 	// Handle APIs not found
 	server.Get("/api/*", func(c *fiber.Ctx) error {
-		return fiber.NewError(fiber.StatusNotFound, "not found")
+		return proxy.Forward(conn.Endpoint)(c)
 	})
 
 	// Serve static files

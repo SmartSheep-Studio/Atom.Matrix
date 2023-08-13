@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from "node:url"
 
 import { defineConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
+import Vue from "@vitejs/plugin-vue"
 import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers"
@@ -10,7 +10,7 @@ import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    Vue(),
     AutoImport({
       imports: [
         "vue",
