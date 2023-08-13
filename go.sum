@@ -43,6 +43,8 @@ code.smartsheep.studio/atom/bedrock v0.0.0-20230812152104-26fb850f894f h1:kRBE4R
 code.smartsheep.studio/atom/bedrock v0.0.0-20230812152104-26fb850f894f/go.mod h1:xN8xkipKCkQgXFZ9B6xxqgyUKLhNCGVHFnoHF1y3Qag=
 code.smartsheep.studio/atom/bedrock v0.0.0-20230812152450-5b49d30cff23 h1:IU3WYxz7uicvI0vadr+lMLmebqs6LYkwSNGrkyKji/Y=
 code.smartsheep.studio/atom/bedrock v0.0.0-20230812152450-5b49d30cff23/go.mod h1:xN8xkipKCkQgXFZ9B6xxqgyUKLhNCGVHFnoHF1y3Qag=
+code.smartsheep.studio/atom/bedrock v0.0.0-20230813071004-8e6868dce392 h1:jIV6ltu5EeWjRz1b3IeQCDWbA9MuvUc4SoctB/yGcTI=
+code.smartsheep.studio/atom/bedrock v0.0.0-20230813071004-8e6868dce392/go.mod h1:xN8xkipKCkQgXFZ9B6xxqgyUKLhNCGVHFnoHF1y3Qag=
 code.smartsheep.studio/atom/neutron v0.0.0-20230713075104-9c4c72ab83cb h1:sZ4hpK4n8136bVUvChZJfLICuY0YMzKwdJE35okK6N8=
 code.smartsheep.studio/atom/neutron v0.0.0-20230713075104-9c4c72ab83cb/go.mod h1:geRSf6Maxu0faW/UnmQ3XECi+FVqaHOwIb76kTacuSI=
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=

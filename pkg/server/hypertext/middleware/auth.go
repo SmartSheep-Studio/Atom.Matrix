@@ -1,8 +1,11 @@
 package middleware
 
 import (
+	"code.smartsheep.studio/atom/matrix/pkg/server/datasource/models"
+	"errors"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
 	"strings"
 
 	"code.smartsheep.studio/atom/bedrock/pkg/kit/subapps"
@@ -12,6 +15,7 @@ import (
 type AuthHandler func(force bool, scope []string, perms []string) fiber.Handler
 
 type AuthMiddleware struct {
+	db   *gorm.DB
 	conn *subapps.HeLiCoPtErConnection
 
 	Fn AuthHandler
@@ -22,13 +26,13 @@ type AuthConfig struct {
 	LookupToken string
 }
 
-func NewAuth(c *subapps.HeLiCoPtErConnection) *AuthMiddleware {
+func NewAuth(db *gorm.DB, c *subapps.HeLiCoPtErConnection) *AuthMiddleware {
 	cfg := AuthConfig{
 		Next:        nil,
 		LookupToken: "header: Authorization, query: token, cookie: authorization",
 	}
 
-	inst := &AuthMiddleware{conn: c}
+	inst := &AuthMiddleware{db, c, nil}
 	inst.Fn = func(force bool, scope []string, perms []string) fiber.Handler {
 		return func(c *fiber.Ctx) error {
 			if cfg.Next != nil && cfg.Next(c) {
@@ -45,6 +49,24 @@ func NewAuth(c *subapps.HeLiCoPtErConnection) *AuthMiddleware {
 					} else if err := c.Locals("principal").(tmodels.User).HasPermissions(perms...); err != nil {
 						return fiber.NewError(fiber.StatusForbidden, err.Error())
 					}
+
+					var account *models.Account
+					if err := inst.db.Where("user_id = ?", c.Locals("principal").(tmodels.User).ID).First(&account).Error; err != nil {
+						if errors.Is(gorm.ErrRecordNotFound, err) {
+							account = &models.Account{
+								Nickname: c.Locals("principal").(tmodels.User).Nickname,
+								UserID:   c.Locals("principal").(tmodels.User).ID,
+							}
+
+							if err := db.Save(&account).Error; err != nil {
+								return fiber.NewError(fiber.StatusInternalServerError, err.Error())
+							}
+						} else {
+							return fiber.NewError(fiber.StatusInternalServerError, err.Error())
+						}
+					}
+
+					c.Locals("matrix-id", account)
 				}
 
 				c.Locals("principal-ok", err == nil)
