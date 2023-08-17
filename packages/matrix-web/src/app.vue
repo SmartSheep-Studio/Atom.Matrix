@@ -62,7 +62,7 @@ const themeOverrides = {
 
 const menuKey = ref($route.name);
 const menuOptions: Ref<MenuOption[]> = computed(() =>
-  $principal.isLoggedIn
+  $principal.isSigned
     ? [
       {
         label: () => h(RouterLink, { to: { name: "landing" } }, { default: () => t("nav.explore") }),

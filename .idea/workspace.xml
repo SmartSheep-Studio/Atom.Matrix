@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":hammer: Update Dockerfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/stores/principal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/stores/principal.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/utils/gatekeeper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/gatekeeper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,17 +80,19 @@
       <command value="go mod tidy" />
     </option>
   </component>
-  <component name="RunManager" selected="Go 构建.Matrix">
+  <component name="RunManager" selected="npm.Matrix Web">
     <configuration name="Matrix" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="Matrix" />
       <working_directory value="$PROJECT_DIR$" />
       <parameters value="serve" />
+      <envs>
+        <env name="BEDROCK_ENDPOINT_URL" value="http://localhost:9443" />
+      </envs>
       <kind value="FILE" />
       <package value="code.smartsheep.studio/atom/matrix/pkg/cmd/server" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/pkg/cmd/server/main.go" />
       <output_directory value="$PROJECT_DIR$/../Bedrock/dist/subapps/matrix" />
-      <option name="run" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Matrix Web" type="js.build_tools.npm">

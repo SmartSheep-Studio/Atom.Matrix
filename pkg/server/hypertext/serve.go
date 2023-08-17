@@ -100,8 +100,8 @@ func MapControllers(controllers []controllers.HypertextController, server *fiber
 	}
 
 	// Handle APIs not found
-	server.Get("/api/*", func(c *fiber.Ctx) error {
-		return proxy.Forward(conn.Endpoint)(c)
+	server.All("/api/*", func(c *fiber.Ctx) error {
+		return proxy.Do(c, conn.Endpoint+string(c.Request().URI().Path())+string(c.Request().URI().QueryString()))
 	})
 
 	// Serve static files
