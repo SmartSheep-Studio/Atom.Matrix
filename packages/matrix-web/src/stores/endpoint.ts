@@ -23,7 +23,6 @@ export const useEndpoint = defineStore("endpoint", () => {
       throw e
     }
 
-    console.log(configuration.value)
     document.title = configuration.value.general.name ?? "Project Atom"
   }
 

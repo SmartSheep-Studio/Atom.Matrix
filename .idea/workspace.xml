@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":hammer: Update Dockerfile">
+    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":bug: Fix fallback and permission gatekeeper issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/stores/principal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/stores/principal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/utils/gatekeeper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/gatekeeper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/stores/endpoint.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/stores/endpoint.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/utils/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/http.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,7 @@
       <command value="go mod tidy" />
     </option>
   </component>
-  <component name="RunManager" selected="npm.Matrix Web">
+  <component name="RunManager" selected="Go 构建.Matrix">
     <configuration name="Matrix" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="Matrix" />
       <working_directory value="$PROJECT_DIR$" />
@@ -139,7 +138,8 @@
     <MESSAGE value=":bug: Fix bugs" />
     <MESSAGE value=":sparkles: Forward missing APIs" />
     <MESSAGE value=":hammer: Update Dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value=":hammer: Update Dockerfile" />
+    <MESSAGE value=":bug: Fix fallback and permission gatekeeper issue" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: Fix fallback and permission gatekeeper issue" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
