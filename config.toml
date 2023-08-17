@@ -13,6 +13,7 @@ sessions_alive_duration = "720h"
 [hypertext]
 bind_addr = ":9446"
 max_body_size = 4194304
+max_request_count = 30
 [hypertext.advanced]
 prefork = false
 

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":bug: Fix fallback and permission gatekeeper issue">
+    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":bug: Bug fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/stores/endpoint.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/stores/endpoint.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/utils/http.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/utils/http.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/config.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/matrix-web/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/hypertext/serve.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +139,9 @@
     <MESSAGE value=":sparkles: Forward missing APIs" />
     <MESSAGE value=":hammer: Update Dockerfile" />
     <MESSAGE value=":bug: Fix fallback and permission gatekeeper issue" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bug: Fix fallback and permission gatekeeper issue" />
+    <MESSAGE value=":arrow_up: Support reserve proxy loader" />
+    <MESSAGE value=":bug: Bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bug: Bug fixes" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
