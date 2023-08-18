@@ -14,10 +14,10 @@
       <n-grid v-if="!reverting" item-responsive responsive="screen" x-gap="8" y-gap="8" class="lg:px-10 pt-4">
         <n-gi span="24 m:14">
           <n-card>
-            <v-md-editor :model-value="app.details" mode="preview" />
+            <v-md-editor :model-value="app.details" mode="preview"/>
           </n-card>
           <n-card class="mt-2" title="News">
-            <n-grid :cols="4" item-responsive responsive="screen" x-gap="8" y-gap="8">
+            <n-grid :cols="4" item-responsive responsive="screen" x-gap="8" y-gap="8" v-if="app.posts.length > 0">
               <n-gi span="4 m:2" v-for="(item, index) in app.posts">
                 <n-card class="cursor-pointer" hoverable @click="newsPopup[index] = true">
                   <div class="text-lg">{{ item.title }}</div>
@@ -34,11 +34,13 @@
                       </n-space>
                     </template>
 
-                    <v-md-editor :model-value="item.content" mode="preview" />
+                    <v-md-editor :model-value="item.content" mode="preview"/>
                   </n-card>
                 </n-modal>
               </n-gi>
             </n-grid>
+
+            <n-empty description="There's no available news" v-else/>
           </n-card>
         </n-gi>
         <n-gi span="24 m:6 l:8">
@@ -47,13 +49,17 @@
             <div class="text-lg font-bold">Free for All</div>
             <n-button class="w-full mt-2" type="primary" :disabled="buyable" :loading="submitting" @click="purchase()">
               <template #icon>
-                <n-icon :component="PlaylistAddRound" />
+                <n-icon :component="PlaylistAddRound"/>
               </template>
               Add to Library
             </n-button>
           </n-card>
           <n-card class="mt-2" title="Information">
             <div>
+              <div class="font-bold">Project URL</div>
+              <div class="line-clamp-1"><a :href="app.url" target="_blank">{{ app.url }}</a></div>
+            </div>
+            <div class="mt-2">
               <div class="font-bold">Published At</div>
               <div>{{ new Date(app.created_at).toLocaleString() }}</div>
             </div>
@@ -69,11 +75,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useMessage } from "naive-ui"
-import { useRoute, useRouter } from "vue-router"
-import { onMounted, ref } from "vue"
-import { PlaylistAddRound } from "@vicons/material"
-import { http } from "@/utils/http"
+import {useMessage} from "naive-ui"
+import {useRoute, useRouter} from "vue-router"
+import {onMounted, ref} from "vue"
+import {PlaylistAddRound} from "@vicons/material"
+import {http} from "@/utils/http"
 
 const $route = useRoute()
 const $router = useRouter()
@@ -91,7 +97,7 @@ async function fetch() {
     reverting.value = true
     app.value = (await http.get(`/api/explore/apps/${$route.params.app}`)).data
     app.value.posts = (await http.get(`/api/explore/apps/${$route.params.app}/posts`)).data
-    buyable.value = (await http.get("/api/library/own", { params: { app: app.value.slug } })).status === 204
+    buyable.value = (await http.get("/api/library/own", {params: {app: app.value.slug}})).status === 204
   } catch (e: any) {
     $message.error(`Something went wrong... ${e}`)
   } finally {
@@ -102,9 +108,9 @@ async function fetch() {
 async function purchase() {
   try {
     submitting.value = true
-    await http.post("/api/library/add", { app: app.value.slug })
+    await http.post("/api/library/add", {app: app.value.slug})
     $message.success("Successfully add into your library.")
-    $router.push({ name: "library" })
+    $router.push({name: "library"})
   } catch (e: any) {
     $message.error(`Something went wrong... ${e}`)
   } finally {

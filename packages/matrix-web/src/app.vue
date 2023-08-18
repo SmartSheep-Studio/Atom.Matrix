@@ -110,4 +110,8 @@ const isUnderShadow = computed(() => {
 .w-dialog {
   width: 520px;
 }
+
+a {
+  color: #329fd2;
+}
 </style>

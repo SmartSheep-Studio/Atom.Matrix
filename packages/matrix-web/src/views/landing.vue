@@ -24,7 +24,7 @@
         <n-gi span="4 m:2 l:1" v-for="item in exploreQueue">
           <n-card hoverable @click="$router.push({ name: 'store.info', params: { app: item.slug } })">
             <div class="text-lg">{{ item.name }}</div>
-            <div>{{ item.description }}</div>
+            <div class="line-clamp-2">{{ item.description }}</div>
           </n-card>
         </n-gi>
       </n-grid>
