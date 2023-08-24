@@ -2,19 +2,17 @@
   <n-config-provider :theme-overrides="themeOverrides">
     <n-dialog-provider>
       <n-message-provider>
-        <div class="w-full relative" :class="isUnderShadow ? 'h-max' : 'h-screen'">
-          <n-layout has-sider position="absolute">
-            <n-layout-sider bordered collapse-mode="width" collapsed :collapsed-width="64" class="pt-2">
+        <div class="w-full relative h-[100vh]">
+          <n-layout position="absolute">
+            <n-layout-header bordered class="px-8 md:px-16 h-full flex items-center">
               <n-menu
-                collapsed
+                mode="horizontal"
                 v-model:value="menuKey"
-                :collapsed-width="64"
-                :collapsed-icon-size="22"
                 :options="menuOptions"
               />
-            </n-layout-sider>
+            </n-layout-header>
 
-            <n-layout class="w-full h-full">
+            <n-layout class="w-full h-[100vh-72px]">
               <data-provider>
                 <gatekeeper>
                   <router-view />
@@ -87,11 +85,6 @@ const menuOptions: Ref<MenuOption[]> = computed(() =>
 watch($route, (v) => {
   menuKey.value = v.name;
 });
-
-// Use for dynamic calculate height
-const isUnderShadow = computed(() => {
-  return (window as any).__POWERED_BY_WUJIE__ != null;
-});
 </script>
 
 <style>
@@ -101,10 +94,6 @@ const isUnderShadow = computed(() => {
 
 .n-layout-footer {
   padding: 24px;
-}
-
-.h-max {
-  height: calc(100vh - 72px);
 }
 
 .w-dialog {

@@ -1,6 +1,6 @@
 <template>
-  <n-layout-content class="content-placeholder w-full h-max" v-if="reverting">
-    <div class="w-full h-max flex justify-center items-center">
+  <n-layout-content class="content-placeholder w-full h-full" v-if="reverting">
+    <div class="w-full h-full flex justify-center items-center">
       <n-spin show>
         <template #description>{{ $t('common.feedback.connecting') }}</template>
       </n-spin>

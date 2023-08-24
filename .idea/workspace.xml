@@ -4,16 +4,24 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":bug: Bug fixes">
+    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":sparkles: Display Project URL on info page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/components.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/views/landing.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/landing.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/views/store/info.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/views/store/info.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/data-provider.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/data-provider.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/server/datasource/models/account.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/accounts.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../../Tools/Scoop/apps/go/current" />
   <component name="Git.Settings">
@@ -40,6 +48,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
@@ -51,7 +60,7 @@
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LittleSheep/Projects/Code/Atom/Bedrock/dist/subapps/matrix&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LittleSheep/Projects/Code/Atom/Quaso&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -79,7 +88,7 @@
       <command value="go mod tidy" />
     </option>
   </component>
-  <component name="RunManager" selected="npm.Matrix Web">
+  <component name="RunManager" selected="Go 构建.Matrix">
     <configuration name="Matrix" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="Matrix" />
       <working_directory value="$PROJECT_DIR$" />
@@ -141,7 +150,8 @@
     <MESSAGE value=":bug: Fix fallback and permission gatekeeper issue" />
     <MESSAGE value=":arrow_up: Support reserve proxy loader" />
     <MESSAGE value=":bug: Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bug: Bug fixes" />
+    <MESSAGE value=":sparkles: Display Project URL on info page" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: Display Project URL on info page" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
