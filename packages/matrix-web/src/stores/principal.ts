@@ -10,7 +10,7 @@ export const usePrincipal = defineStore("principal", () => {
   const token = computed(() => cookies.get("authorization"))
 
   const session = ref<any>({})
-  const account = useLocalStorage<any | null>("atom-profile", null, {
+  const account = useLocalStorage<any | null>("account-data", null, {
     deep: true,
     listenToStorageChanges: true,
     serializer: {

@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":sparkles: Display Project URL on info page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/components.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/matrix-web/src/data-provider.vue" beforeDir="false" afterPath="$PROJECT_DIR$/packages/matrix-web/src/data-provider.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/server/datasource/models/account.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/server/datasource/models/accounts.go" afterDir="false" />
-    </list>
+    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":arrow_up: Support Bedrock new layout" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +145,8 @@
     <MESSAGE value=":arrow_up: Support reserve proxy loader" />
     <MESSAGE value=":bug: Bug fixes" />
     <MESSAGE value=":sparkles: Display Project URL on info page" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: Display Project URL on info page" />
+    <MESSAGE value=":arrow_up: Support Bedrock new layout" />
+    <option name="LAST_COMMIT_MESSAGE" value=":arrow_up: Support Bedrock new layout" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
