@@ -1,16 +1,13 @@
 <template>
   <n-form ref="form" :rules="rules" :model="payload" @submit.prevent="update">
     <n-form-item label="Slug" path="slug">
-      <n-input
-        placeholder="Used for this Application-Page's link. Can only contain URL-safe characters."
-        v-model:value="payload.slug"
-      />
+      <n-input placeholder="Used for this Application-Page's link. Can only contain URL-safe characters."
+        v-model:value="payload.slug" />
     </n-form-item>
     <n-form-item label="URL" path="url">
       <n-input
         placeholder="The homepage of this Application. Can be your studio homepage or source repository, or you can keep this field blank."
-        v-model:value="payload.url"
-      />
+        v-model:value="payload.url" />
     </n-form-item>
     <n-form-item label="Name" path="name">
       <n-input placeholder="The name of this Application. Accepts anything you want." v-model:value="payload.name" />
@@ -19,11 +16,8 @@
       <n-dynamic-tags v-model:value="payload.tags" />
     </n-form-item>
     <n-form-item label="Description" path="description">
-      <n-input
-        type="textarea"
-        placeholder="A brief description of this Application. Accepts anything you want."
-        v-model:value="payload.description"
-      />
+      <n-input type="textarea" placeholder="A brief description of this Application. Accepts anything you want."
+        v-model:value="payload.description" />
     </n-form-item>
     <n-form-item label="Details" path="details">
       <v-md-editor v-model="payload.details" height="400px" />
@@ -49,7 +43,7 @@ const $message = useMessage()
 
 const submitting = ref(false)
 
-const props = defineProps<{data: any}>()
+const props = defineProps<{ data: any }>()
 const emits = defineEmits(["refresh"])
 
 const form = ref<FormInst | null>(null)
@@ -99,7 +93,7 @@ function update() {
     try {
       submitting.value = true
 
-      await http.put(`/api/apps/${props.data.slug}`, payload.value)
+      await http.put(`/api/apps/${$route.params.app}`, payload.value)
 
       emits("refresh")
       $message.success("Successfully updated the app")
