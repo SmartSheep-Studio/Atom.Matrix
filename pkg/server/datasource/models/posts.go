@@ -13,7 +13,7 @@ const (
 type Post struct {
 	Model
 
-	Slug        string                      `json:"slug" gorm:"uniqueIndex"`
+	Slug        string                      `json:"slug" gorm:"index:posts_pkey,unique"`
 	Type        string                      `json:"type"`
 	Title       string                      `json:"title"`
 	Cover       string                      `json:"cover"`
@@ -21,5 +21,5 @@ type Post struct {
 	Tags        datatypes.JSONSlice[string] `json:"tags"`
 	ReleaseID   *uint                       `json:"release_id"`
 	IsPublished bool                        `json:"is_published"`
-	AppID       uint                        `json:"app_id"`
+	AppID       uint                        `json:"app_id" gorm:"index:posts_pkey,unique"`
 }

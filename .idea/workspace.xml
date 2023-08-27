@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":arrow_up: Support Bedrock new layout" />
+    <list default="true" id="171c3bbe-7984-49bc-902e-7e9a4b1e3d89" name="Changes" comment=":pencil2: Fix typo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +146,8 @@
     <MESSAGE value=":bug: Bug fixes" />
     <MESSAGE value=":sparkles: Display Project URL on info page" />
     <MESSAGE value=":arrow_up: Support Bedrock new layout" />
-    <option name="LAST_COMMIT_MESSAGE" value=":arrow_up: Support Bedrock new layout" />
+    <MESSAGE value=":pencil2: Fix typo" />
+    <option name="LAST_COMMIT_MESSAGE" value=":pencil2: Fix typo" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -6,13 +6,13 @@ type Release struct {
 	Model
 
 	Name         string                             `json:"name"`
-	Slug         string                             `json:"slug"`
+	Slug         string                             `json:"slug" gorm:"index:releases_pkey,unique"`
 	Description  string                             `json:"description"`
 	IsPrerelease bool                               `json:"is_prerelease"`
 	IsPublished  bool                               `json:"is_published"`
 	Post         Post                               `json:"post" gorm:"foreignKey:ReleaseID"`
 	Options      datatypes.JSONType[ReleaseOptions] `json:"options"`
-	AppID        uint                               `json:"app_id"`
+	AppID        uint                               `json:"app_id" gorm:"index:releases_pkey,unique"`
 }
 
 type ReleaseOptions struct {
